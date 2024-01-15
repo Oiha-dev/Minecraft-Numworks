@@ -1,4 +1,4 @@
-from kandinsky import fill_rect, color, set_pixel
+from kandinsky import fill_rect, color, set_pixel, fill_polygon
 from ion import KEY_LEFT, KEY_DOWN, KEY_UP, KEY_RIGHT, keydown
 
 
@@ -83,101 +83,17 @@ def create_map(block_map, block_mapping, map_index, x_start, y_start, renderPosi
 def draw_map(map_index, block_mapping):
     for i in range(len(map_index)):
         if map_index[i][2] == 'B':
-            a = 16
-            for y in range(8):
-                a -= 2
-                for x in range(a):
-                    color_pixel = block_mapping.get(map_index[i][1])[0].get(
-                        block_mapping.get(map_index[i][1])[1][y + 8][-x + 15])
-                    set_pixel(map_index[i][0][0] - x + 15, map_index[i][0][1] + y + 8,
-                                 color(color_pixel[0], color_pixel[1], color_pixel[2]))
-            for y in range(8):
-                a += 2
-                for x in range(a):
-                    color_pixel = block_mapping.get(map_index[i][1])[0].get(
-                        block_mapping.get(map_index[i][1])[1][y][-x + 15])
-                    set_pixel(map_index[i][0][0] - x + 15, map_index[i][0][1] + y,
-                                 color(color_pixel[0], color_pixel[1], color_pixel[2]))
+            fill_polygon([(0+map_index[i][0][0], 8+map_index[i][0][1]-1), (16+map_index[i][0][0], 0+map_index[i][0][1]-1), (16+map_index[i][0][0], 16+map_index[i][0][1]-1)], (0, 0, 0))
         elif map_index[i][2] == 'C':
-            a = 0
-            for y in range(8):
-                a += 2
-                for x in range(a):
-                    color_pixel = block_mapping.get(map_index[i][1])[0].get(
-                        block_mapping.get(map_index[i][1])[1][y][x + 16])
-                    set_pixel(map_index[i][0][0] + x, map_index[i][0][1] + y,
-                                 color(color_pixel[0], color_pixel[1], color_pixel[2]))
-            for y in range(8):
-                a -= 2
-                for x in range(a):
-                    color_pixel = block_mapping.get(map_index[i][1])[0].get(
-                        block_mapping.get(map_index[i][1])[1][y + 8][x + 16])
-                    set_pixel(map_index[i][0][0] + x, map_index[i][0][1] + y + 8,
-                                 color(color_pixel[0], color_pixel[1], color_pixel[2]))
+            fill_polygon([(16+map_index[i][0][0], 8+map_index[i][0][1]-1), (0+map_index[i][0][0], 0+map_index[i][0][1]-1), (0+map_index[i][0][0], 16+map_index[i][0][1]-1)], (0, 0, 0))
         elif map_index[i][2] == 'D':
-            a = 0
-            for y in range(8):
-                a += 2
-                for x in range(a):
-                    color_pixel = block_mapping.get(map_index[i][1])[0].get(
-                        block_mapping.get(map_index[i][1])[1][y + 8][x])
-                    set_pixel(map_index[i][0][0] + x, map_index[i][0][1] + y,
-                                 color(color_pixel[0], color_pixel[1], color_pixel[2]))
-            for y in range(8):
-                a -= 2
-                for x in range(a):
-                    color_pixel = block_mapping.get(map_index[i][1])[0].get(
-                        block_mapping.get(map_index[i][1])[1][y + 16][x])
-                    set_pixel(map_index[i][0][0] + x, map_index[i][0][1] + y + 8,
-                                 color(color_pixel[0], color_pixel[1], color_pixel[2]))
+            fill_polygon([(16+map_index[i][0][0], 8+map_index[i][0][1]-1), (0+map_index[i][0][0], 0+map_index[i][0][1]-1), (0+map_index[i][0][0], 16+map_index[i][0][1]-1)], (0, 0, 0))
         elif map_index[i][2] == 'E':
-            a = 16
-            for y in range(8):
-                a -= 2
-                for x in range(a):
-                    color_pixel = block_mapping.get(map_index[i][1])[0].get(
-                        block_mapping.get(map_index[i][1])[1][y + 16][-x + 15 + 16])
-                    set_pixel(map_index[i][0][0] - x + 15, map_index[i][0][1] + y + 8,
-                                 color(color_pixel[0], color_pixel[1], color_pixel[2]))
-            for y in range(8):
-                a += 2
-                for x in range(a):
-                    color_pixel = block_mapping.get(map_index[i][1])[0].get(
-                        block_mapping.get(map_index[i][1])[1][y + 8][-x + 15 + 16])
-                    set_pixel(map_index[i][0][0] - x + 15, map_index[i][0][1] + y,
-                                 color(color_pixel[0], color_pixel[1], color_pixel[2]))
+            fill_polygon([(0+map_index[i][0][0], 8+map_index[i][0][1]-1), (16+map_index[i][0][0], 0+map_index[i][0][1]-1), (16+map_index[i][0][0], 16+map_index[i][0][1]-1)], (0, 0, 0))
         elif map_index[i][2] == 'F':
-            a = 16
-            for y in range(8):
-                a -= 2
-                for x in range(a):
-                    color_pixel = block_mapping.get(map_index[i][1])[0].get(
-                        block_mapping.get(map_index[i][1])[1][y + 8 + 16][-x + 15])
-                    set_pixel(map_index[i][0][0] - x + 15, map_index[i][0][1] + y + 8,
-                                 color(color_pixel[0], color_pixel[1], color_pixel[2]))
-            for y in range(8):
-                a += 2
-                for x in range(a):
-                    color_pixel = block_mapping.get(map_index[i][1])[0].get(
-                        block_mapping.get(map_index[i][1])[1][y + 16][-x + 15])
-                    set_pixel(map_index[i][0][0] - x + 15, map_index[i][0][1] + y,
-                                 color(color_pixel[0], color_pixel[1], color_pixel[2]))
+            fill_polygon([(0+map_index[i][0][0], 8+map_index[i][0][1]-1), (16+map_index[i][0][0], 0+map_index[i][0][1]-1), (16+map_index[i][0][0], 16+map_index[i][0][1]-1)], (0, 0, 0))
         elif map_index[i][2] == 'G':
-            a = 0
-            for y in range(8):
-                a += 2
-                for x in range(a):
-                    color_pixel = block_mapping.get(map_index[i][1])[0].get(
-                        block_mapping.get(map_index[i][1])[1][y + 16][x + 16])
-                    set_pixel(map_index[i][0][0] + x, map_index[i][0][1] + y,
-                                 color(color_pixel[0], color_pixel[1], color_pixel[2]))
-            for y in range(8):
-                a -= 2
-                for x in range(a):
-                    color_pixel = block_mapping.get(map_index[i][1])[0].get(
-                        block_mapping.get(map_index[i][1])[1][y + 8 + 16][x + 16])
-                    set_pixel(map_index[i][0][0] + x, map_index[i][0][1] + y + 8,
-                                 color(color_pixel[0], color_pixel[1], color_pixel[2]))
+            fill_polygon([(16+map_index[i][0][0], 8+map_index[i][0][1]-1), (0+map_index[i][0][0], 0+map_index[i][0][1]-1), (0+map_index[i][0][0], 16+map_index[i][0][1]-1)], (0, 0, 0))
 
 def create_Map_index():
     index = []
